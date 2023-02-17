@@ -22,7 +22,7 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "format": "prettier src/**/*.{tsx,ts} src/*.{tsx,ts} --write"
+    "format": "prettier src/**/*.{tsx,ts} src/**/**/*.{tsx,ts} src/*.{tsx,ts} --write"
   },
   "eslintConfig": {
     "extends": [
