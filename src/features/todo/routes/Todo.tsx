@@ -4,20 +4,20 @@ import { v4 as uuidv4 } from "uuid";
 
 import { Form } from "../components/Form";
 import List from "../components/List";
-import { Post } from "../types";
+import { TodoProps } from "../types";
 
-const FETCH_ALL_POST = gql`
-  query GetPost {
-    posts {
+const FETCH_ALL_TODO = gql`
+  query GetTodo {
+    todos {
       id
       title
     }
   }
 `;
 
-const CREATE_POST = gql`
-  mutation CreatePost($data: PostInput!) {
-    createPost(data: $data) {
+const CREATE_TODO = gql`
+  mutation CreateTodo($data: TodoInput!) {
+    createTodo(data: $data) {
       id
       title
     }
@@ -26,9 +26,9 @@ const CREATE_POST = gql`
 
 export const Todo = () => {
   const [title, setTitle] = useState("");
-  const { loading, error, data } = useQuery<{ posts: Post[] }>(FETCH_ALL_POST);
-  const [createPost] = useMutation(CREATE_POST, {
-    refetchQueries: [{ query: FETCH_ALL_POST }],
+  const { loading, error, data } = useQuery<{ todos: TodoProps[] }>(FETCH_ALL_TODO);
+  const [createTodo] = useMutation(CREATE_TODO, {
+    refetchQueries: [{ query: FETCH_ALL_TODO }],
   });
 
   if (loading) return <p>loading</p>;
@@ -38,7 +38,7 @@ export const Todo = () => {
     e.preventDefault();
 
     if (!title.trim()) return;
-    createPost({
+    createTodo({
       variables: { data: { id: uuidv4(), title } },
     });
     setTitle("");
@@ -47,7 +47,7 @@ export const Todo = () => {
   return (
     <>
       <Form handleSubmit={handleSubmit} setTitle={setTitle} title={title} />
-      <List posts={data?.posts} />
+      <List todos={data?.todos} />
     </>
   );
 };

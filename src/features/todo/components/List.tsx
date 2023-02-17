@@ -1,17 +1,17 @@
 import React from "react";
 
-import { Post } from "../types";
+import { TodoProps } from "../types";
 
 type Props = {
-  posts: Post[] | undefined;
+  todos: TodoProps[] | undefined;
 };
 
-export const List = ({ posts }: Props) => {
-  return posts ? (
+export const List = ({ todos }: Props) => {
+  return todos ? (
     <ul>
-      {posts.map((post, index) => (
-        <li data-testid={`todo-${index}`} key={post.id}>
-          {post.title}
+      {todos.map((todo, index) => (
+        <li data-testid={`todo-${index}`} key={todo.id}>
+          {todo.title}
         </li>
       ))}
     </ul>

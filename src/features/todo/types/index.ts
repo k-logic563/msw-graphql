@@ -1,4 +1,4 @@
-export type Post = {
+export type TodoProps = {
   id: string;
   title: string;
 };

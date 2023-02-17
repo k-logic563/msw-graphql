@@ -1,10 +1,10 @@
 import { factory, primaryKey } from "@mswjs/data";
 
 const db = factory({
-  post: {
+  todo: {
     id: primaryKey(String),
     title: String,
   },
 });
 
-export const handlers = [...db.post.toHandlers("graphql")];
+export const handlers = [...db.todo.toHandlers("graphql")];
